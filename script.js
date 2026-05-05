@@ -83,3 +83,35 @@ contactForm.addEventListener('submit', function(event) {
         }, 4000);
     }
 });
+
+// --- Efeito Máquina de Escrever no Portfólio ---
+const projectRows = document.querySelectorAll('.project-row');
+
+projectRows.forEach(row => {
+    let typingInterval;
+    const descElement = row.querySelector('.project-desc');
+    const fullText = row.getAttribute('data-desc');
+
+    // Quando o mouse entra na linha do projeto
+    row.addEventListener('mouseenter', () => {
+        descElement.textContent = ''; // Limpa o texto atual
+        let i = 0;
+        clearInterval(typingInterval);
+        
+        // Inicia a digitação caractere por caractere
+        typingInterval = setInterval(() => {
+            if (i < fullText.length) {
+                descElement.textContent += fullText.charAt(i);
+                i++;
+            } else {
+                clearInterval(typingInterval); // Para quando terminar
+            }
+        }, 15); // Velocidade da digitação (15ms por letra)
+    });
+
+    // Quando o mouse sai da linha do projeto
+    row.addEventListener('mouseleave', () => {
+        clearInterval(typingInterval);
+        descElement.textContent = ''; // Apaga o texto
+    });
+});
