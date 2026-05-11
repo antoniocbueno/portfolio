@@ -113,3 +113,32 @@ projectRows.forEach(row => {
         descElement.textContent = '';
     });
 });
+
+document.getElementById("year").innerHTML = new Date().getFullYear();
+
+// --- Animações de scroll ---
+// Seleciona todos os elementos que terão animação
+const revealElements = document.querySelectorAll('.reveal');
+
+// Configurações do observador
+const revealOptions = {
+    threshold: 0.20,
+    rootMargin: "0px 0px -50px 0px"
+};
+
+const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+            // Se o elemento saiu da tela, remove a classe
+            entry.target.classList.remove('active');
+            return;
+        }
+        // Se entrou na tela, adiciona a classe para animar
+        entry.target.classList.add('active');
+    });
+}, revealOptions);
+
+// Inicia a observação em cada elemento
+revealElements.forEach(el => {
+    revealOnScroll.observe(el);
+});

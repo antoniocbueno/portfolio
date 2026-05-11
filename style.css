@@ -40,9 +40,15 @@ body {
 }
 
 .container {
+    width: 100%;
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+.text-center {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 /* --- Header e navegação --- */
@@ -58,7 +64,7 @@ header {
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 40px);
-    max-width: 1450px;
+    max-width: 1280px;
     padding: 1rem 2rem;
     z-index: 1000;
     display: flex;
@@ -68,9 +74,43 @@ header {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--primary-color);
+    height: 36px;
+}
+
+.logo svg {
+    height: 100%;
+    width: auto;
+    transition: color 0.3s ease;
+}
+
+/* --- Botão de tema --- */
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+#theme-toggle::before {
+    content: "🌙";
+}
+
+[data-theme="dark"] #theme-toggle::before {
+    content: "☀️";
 }
 
 nav ul {
@@ -91,17 +131,10 @@ nav a:hover {
     color: var(--primary-color);
 }
 
-#theme-toggle {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
 /* --- Seções --- */
 .section {
     padding: 120px 0 60px;
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
 }
@@ -135,7 +168,6 @@ h1, h2 {
 button, .btn {
     font-family: inherit;
     display: inline-block;
-    margin-top: 15px;
     padding: 10px 20px;
     background-color: var(--primary-color);
     color: #fff;
@@ -144,150 +176,6 @@ button, .btn {
     border: none;
     cursor: pointer;
     font-size: 1rem;
-}
-
-/* --- Formulário de contato --- */
-form {
-    background-color: var(--card-bg);
-    padding: 30px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-}
-
-.input-group {
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input, textarea {
-    font-family: inherit;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-size: 1rem;
-}
-
-.error-msg {
-    color: #ff4d4d;
-    font-size: 0.85rem;
-    display: block;
-    margin-top: 5px;
-}
-
-.feedback-msg {
-    margin-top: 15px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.success { color: #28a745; }
-
-/* --- Rodapé --- */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: var(--header-bg);
-    border-top: 1px solid var(--border-color);
-}
-
-/* Seção projetos */
-.container-fluid {
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 40px;
-}
-
-.section-title {
-    margin-bottom: 3rem;
-    font-size: 2.5rem;
-    color: var(--primary-color);
-}
-
-.project-list {
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid var(--border-color);
-}
-
-.project-row {
-    display: grid;
-    grid-template-columns: 2fr 3fr 4fr;
-    align-items: center;
-    gap: 40px;
-    padding: 60px 0;
-    border-bottom: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.project-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    min-height: 150px;
-}
-
-.project-desc {
-    font-size: 1.1rem;
-    line-height: 1.4;
-    min-height: 80px;
-}
-
-.project-index {
-    color: var(--text-color);
-    opacity: 0.6;
-    margin-top: 20px;
-}
-
-.project-center {
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.project-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transform: scale(1);
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.project-right {
-    text-align: right;
-}
-
-.project-title {
-    font-size: clamp(3rem, 6vw, 7rem);
-    font-weight: 400;
-    letter-spacing: -2px;
-    margin: 0;
-    color: var(--primary-color);
-    transform: translateX(0);
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.project-row:hover {
-    background-color: var(--card-bg);
-}
-
-.project-row:hover .project-img {
-    transform: scale(1.08);
-}
-
-.project-row:hover .project-title {
-    transform: translateX(-30px);
-    color: var(--primary-color);
 }
 
 /* --- Carrossel de formação --- */
@@ -374,6 +262,177 @@ footer {
     }
 }
 
+/* Seção projetos */
+.container-fluid {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.section-title {
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border-color);
+}
+
+.project-row {
+    display: grid;
+    grid-template-columns: 2fr 3fr 4fr;
+    align-items: center;
+    gap: 40px;
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.project-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 150px;
+}
+
+.project-desc {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    min-height: 80px;
+}
+
+.project-index {
+    color: var(--text-color);
+    opacity: 0.6;
+    margin-top: 20px;
+}
+
+.project-center {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.project-img {
+    width: 100%;
+    align-items: center;
+    height: auto;
+    display: block;
+    transform: scale(1);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-right {
+    text-align: right;
+}
+
+.project-title {
+    font-size: clamp(3rem, 6vw, 7rem);
+    font-weight: 400;
+    letter-spacing: -2px;
+    margin: 0;
+    color: var(--primary-color);
+    transform: translateX(0);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-row:hover {
+    background-color: var(--card-bg);
+}
+
+.project-row:hover .project-img {
+    transform: scale(1.08);
+}
+
+.project-row:hover .project-title {
+    transform: translateX(-30px);
+    color: var(--primary-color);
+}
+
+/* --- Formulário de contato --- */
+form {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+input, textarea {
+    font-family: inherit;
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito ao clicar no campo de texto */
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px hsla(221, 83%, 53%, 0.2);
+}
+
+.error-msg {
+    color: #ef4444;
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 5px;
+}
+
+.feedback-msg {
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.success { color: #10b981; }
+
+.btn-full {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+/* --- Rodapé --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--header-bg);
+    border-top: 1px solid var(--border-color);
+}
+
 /* Responsividade */
 @media (max-width: 992px) {
     .project-row {
@@ -386,6 +445,43 @@ footer {
 }
 
 @media (max-width: 768px) {
+    /* --- Menu --- */
+    header {
+        flex-wrap: wrap;
+        padding: 15px 20px;
+        width: calc(100% - 20px);
+    }
+
+    .logo {
+        height: 30px;
+        order: 1;
+    }
+
+    #theme-toggle {
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+        order: 2;
+    }
+
+    nav {
+        width: 100%;
+        margin-top: 15px;
+        padding-top: 12px;
+        border-top: 1px solid var(--border-color);
+        order: 3;
+    }
+
+    nav ul {
+        justify-content: space-between;
+        gap: 5px;
+    }
+
+    nav a {
+        font-size: 0.75rem;
+        letter-spacing: 0;
+    }
+
     .carousel-card { 
         width: 260px; 
         min-height: 240px;
@@ -395,4 +491,32 @@ footer {
     .carousel-container::after {
         width: 50px;
     }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    form {
+        padding: 25px 20px;
+    }
+}
+
+/* --- Animações de rolagem --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px); 
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0); 
+}
+
+.reveal.fade-left {
+    transform: translateX(-40px);
+}
+.reveal.fade-left.active {
+    transform: translateX(0);
 }
