@@ -1,4 +1,4 @@
-// --- Alternância de Tema (Dark/Light Mode) ---
+// Alternância de tema (Dark/Light Mode)
 const themeToggleBtn = document.getElementById('theme-toggle');
 const body = document.body;
 
@@ -18,7 +18,7 @@ themeToggleBtn.addEventListener('click', () => {
     }
 });
 
-// --- Validação do Formulário de Contato ---
+// Validação do Formulário de Contato
 const contactForm = document.getElementById('contact-form');
 const feedbackMsg = document.getElementById('form-feedback');
 
@@ -43,13 +43,13 @@ contactForm.addEventListener('submit', function(event) {
 
     let isValid = true;
 
-    // Validação de Nome
+    // Validação de nome
     if (nome === '') {
         errorNome.textContent = 'Por favor, insira seu nome.';
         isValid = false;
     }
 
-    // Validação de E-mail (Regex simples)
+    // Validação de e-mail
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email === '') {
         errorEmail.textContent = 'Por favor, insira seu e-mail.';
@@ -59,16 +59,14 @@ contactForm.addEventListener('submit', function(event) {
         isValid = false;
     }
 
-    // Validação de Mensagem
+    // Validação de mensagem
     if (mensagem === '') {
         errorMensagem.textContent = 'Por favor, escreva uma mensagem.';
         isValid = false;
     }
 
-    // Simulação de Envio
-    if (isValid) {
-        // Aqui seria feita a chamada Fetch/Axios para uma API real
-        
+    // Simulação de envio
+    if (isValid) {       
         // Exibe mensagem de sucesso
         feedbackMsg.textContent = 'Mensagem enviada com sucesso! (Simulação)';
         feedbackMsg.classList.add('success');
@@ -84,7 +82,7 @@ contactForm.addEventListener('submit', function(event) {
     }
 });
 
-// --- Efeito Máquina de Escrever no Portfólio ---
+// Efeito máquina de escrever no portfólio
 const projectRows = document.querySelectorAll('.project-row');
 
 projectRows.forEach(row => {
@@ -94,7 +92,7 @@ projectRows.forEach(row => {
 
     // Quando o mouse entra na linha do projeto
     row.addEventListener('mouseenter', () => {
-        descElement.textContent = ''; // Limpa o texto atual
+        descElement.textContent = '';
         let i = 0;
         clearInterval(typingInterval);
         
@@ -104,14 +102,14 @@ projectRows.forEach(row => {
                 descElement.textContent += fullText.charAt(i);
                 i++;
             } else {
-                clearInterval(typingInterval); // Para quando terminar
+                clearInterval(typingInterval);
             }
-        }, 15); // Velocidade da digitação (15ms por letra)
+        }, 15); // Velocidade da digitação
     });
 
     // Quando o mouse sai da linha do projeto
     row.addEventListener('mouseleave', () => {
         clearInterval(typingInterval);
-        descElement.textContent = ''; // Apaga o texto
+        descElement.textContent = '';
     });
 });

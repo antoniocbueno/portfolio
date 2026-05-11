@@ -1,4 +1,4 @@
-/* --- Variáveis CSS para Tema --- */
+/* --- Variáveis CSS para tema --- */
 :root {
     --bg-color: #f0f4f8;
     --text-color: #1e293b;
@@ -19,12 +19,12 @@
     --header-bg: hsla(0, 0%, 67%, .1);
 }
 
-/* --- Resets e Estilos Globais --- */
+/* --- Resets e estilos globais --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Droid Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: 'SF Mono', Menlo, Consolas, Monaco, Inconsolata, 'Fira Mono', 'Droid Sans Mono', 'Source Code Pro', monospace;
 }
 
 /* Rolagem suave */
@@ -45,20 +45,14 @@ body {
     padding: 0 20px;
 }
 
-/* --- Header e Navegação --- */
+/* --- Header e navegação --- */
 header {
     background-color: var(--header-bg);
-
-    /* Efeito de desfoque */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    
-    /* Bordas e Sombras */
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
     opacity: .9;
-    
-    /* Posicionamento Flutuante */
     position: fixed;
     top: 20px;
     left: 50%;
@@ -90,9 +84,7 @@ nav a {
     color: var(--text-color);
     font-weight: 500;
     transition: color 0.3s ease;
-
     text-transform: uppercase;
-    font-family: 'SF Mono', Menlo, Consolas, Monaco, Inconsolata, 'Fira Mono', 'Droid Sans Mono', 'Source Code Pro', monospace;
 }
 
 nav a:hover {
@@ -119,7 +111,7 @@ h1, h2 {
     color: var(--primary-color);
 }
 
-/* --- Grid de Cards (Formação e Portfólio) --- */
+/* --- Grid de cards (formação e portfólio) --- */
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -140,7 +132,8 @@ h1, h2 {
     transform: translateY(-5px);
 }
 
-.btn {
+button, .btn {
+    font-family: inherit;
     display: inline-block;
     margin-top: 15px;
     padding: 10px 20px;
@@ -153,7 +146,7 @@ h1, h2 {
     font-size: 1rem;
 }
 
-/* --- Formulário de Contato --- */
+/* --- Formulário de contato --- */
 form {
     background-color: var(--card-bg);
     padding: 30px;
@@ -172,6 +165,7 @@ label {
 }
 
 input, textarea {
+    font-family: inherit;
     width: 100%;
     padding: 10px;
     border: 1px solid var(--border-color);
@@ -196,7 +190,7 @@ input, textarea {
 
 .success { color: #28a745; }
 
-/* --- Footer --- */
+/* --- Rodapé --- */
 footer {
     text-align: center;
     padding: 20px;
@@ -204,7 +198,7 @@ footer {
     border-top: 1px solid var(--border-color);
 }
 
-/* --- Estilos Específicos do Portfólio --- */
+/* Seção projetos */
 .container-fluid {
     width: 100%;
     max-width: 1600px;
@@ -235,7 +229,6 @@ footer {
     transition: background-color 0.3s ease;
 }
 
-/* Coluna 1: Descrição e Índice */
 .project-left {
     display: flex;
     flex-direction: column;
@@ -251,13 +244,11 @@ footer {
 }
 
 .project-index {
-    font-family: 'SF Mono', monospace;
     color: var(--text-color);
     opacity: 0.6;
     margin-top: 20px;
 }
 
-/* Coluna 2: Imagem */
 .project-center {
     overflow: hidden;
     border-radius: 8px;
@@ -272,13 +263,11 @@ footer {
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Coluna 3: Título Gigante */
 .project-right {
     text-align: right;
 }
 
 .project-title {
-    font-family: 'SF Mono', Menlo, Consolas, Monaco, Inconsolata, 'Fira Mono', 'Droid Sans Mono', 'Source Code Pro', monospace;
     font-size: clamp(3rem, 6vw, 7rem);
     font-weight: 400;
     letter-spacing: -2px;
@@ -288,7 +277,6 @@ footer {
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* --- Efeitos de Hover (Animações) --- */
 .project-row:hover {
     background-color: var(--card-bg);
 }
@@ -302,7 +290,91 @@ footer {
     color: var(--primary-color);
 }
 
-/* Responsividade Básica */
+/* --- Carrossel de formação --- */
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+}
+
+.carousel-container::before,
+.carousel-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.carousel-container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-color), transparent);
+}
+
+.carousel-container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-color), transparent);
+}
+
+.carousel-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    animation: scrollCarousel 25s linear infinite; 
+}
+
+/* Pausa o carrossel se o usuário colocar o mouse em cima para ler */
+.carousel-container:hover .carousel-track {
+    animation-play-state: paused;
+}
+
+/* Estilização dos cards */
+.carousel-card {
+    width: 320px;
+    min-height: 280px;
+    background-color: var(--card-bg);
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 15px;
+    clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-card:hover {
+    background-color: var(--header-bg);
+    transform: translateY(-5px);
+}
+
+.carousel-card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.carousel-card p {
+    font-size: 0.95rem;
+    color: var(--text-color);
+    opacity: 0.85;
+}
+
+/* Keyframes do carrossel infinito */
+@keyframes scrollCarousel {
+    0% { 
+        transform: translateX(0); 
+    }
+    100% {
+        transform: translateX(calc(-50% - 15px)); 
+    }
+}
+
+/* Responsividade */
 @media (max-width: 992px) {
     .project-row {
         grid-template-columns: 1fr;
@@ -311,4 +383,16 @@ footer {
     }
     .project-right { text-align: left; }
     .project-left { min-height: auto; margin-bottom: 20px; }
+}
+
+@media (max-width: 768px) {
+    .carousel-card { 
+        width: 260px; 
+        min-height: 240px;
+        padding: 30px 20px;
+    }
+    .carousel-container::before,
+    .carousel-container::after {
+        width: 50px;
+    }
 }
