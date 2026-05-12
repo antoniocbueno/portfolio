@@ -284,7 +284,7 @@ button, .btn {
 
 .project-row {
     display: grid;
-    grid-template-columns: 3fr 1.5fr 4.5fr;
+    grid-template-columns: 3fr 2fr 4fr;
     align-items: center;
     gap: 40px;
     padding: 60px 10px;
